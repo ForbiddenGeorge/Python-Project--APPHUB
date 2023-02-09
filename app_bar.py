@@ -18,7 +18,7 @@ def NavBar(page, ft=ft):
                               style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=2))),
             ft.ElevatedButton("Hádač čísel", icon=ft.icons.CONFIRMATION_NUMBER_OUTLINED, on_click=None, width=180, #Pro náhled rozhraní
                               style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=2))),
-            ft.ElevatedButton("Překladač", icon=ft.icons.TRANSCRIBE_OUTLINED, on_click=None, width=180, #Pro náhled rozhraní
+            ft.ElevatedButton("Překladač", icon=ft.icons.TRANSCRIBE_OUTLINED, on_click=lambda _: page.go('/Translate'), width=180, #Pro náhled rozhraní
                               style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=2))),
             ft.ElevatedButton("Hodiny", icon=ft.icons.PUNCH_CLOCK_OUTLINED, on_click=None, width=180, #Pro náhled rozhraní
                               style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=2))),

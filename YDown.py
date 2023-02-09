@@ -7,11 +7,18 @@ import flet as ft
 
 def YDown(page, ft=ft):
     def Vyber(e): #Funkce na zvolení, jestli stáhnout mp3 nebo mp 4
+
         if Volba.value == "mp3":
             StahniTri(VstupniLink.value)
         elif Volba.value == "mp4":
             StahniCtyri(VstupniLink.value)
     page.update()
+
+    def Oznameni(e):
+        page.zprava = ft.SnackBar(ft.Text("Stahování začalo"))
+        page.zprava.open = True
+        page.update()
+
 
     VstupniLink = ft.TextField(label="link", width=800) #Grafické rozhraní
     Volba = ft.Dropdown(
@@ -37,7 +44,7 @@ def YDown(page, ft=ft):
                 ft.ElevatedButton(content=(ft.Text("Stáhni", size=20)), on_click=Vyber)
                 ],
                 alignment=ft.MainAxisAlignment.CENTER
-            )
+            ),
 
         ],
     )
@@ -45,6 +52,7 @@ def YDown(page, ft=ft):
         streem = YouTube(link)
         streem = streem.streams.get_highest_resolution()
         try:
+            Oznameni
             streem.download("./MP4/")
         except:
             pass
@@ -53,6 +61,7 @@ def YDown(page, ft=ft):
         folder = "./MP3/"
         try:
             YouTube(link).streams.filter(only_audio=True).first().download("./MP3/")
+            Oznameni
         except:
             pass
 
