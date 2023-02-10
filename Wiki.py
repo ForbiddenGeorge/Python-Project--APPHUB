@@ -21,9 +21,13 @@ def Wikipe(page, ft=ft):
             "https://en.wikipedia.org/wiki/Special:Random")  # získá html adresu náhodného článku pomocí odkazu
         html = BeautifulSoup(address.content, 'html.parser')  # získá html kód článku
         titlek = html.find(id="firstHeading").text  # získá titulek článku
+
         odstavec = html.find(id="mw-content-text", ).text
-        nadpis.value = str(titlek)
         obsah.value = str(odstavec)
+        #odstavec = html.find_all('p')
+        #obsah.value = str(odstavec[0].text)
+
+        nadpis.value = str(titlek)
         title = titlek
         page.update()
         print(title)
