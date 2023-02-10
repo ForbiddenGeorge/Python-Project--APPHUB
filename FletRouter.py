@@ -4,6 +4,7 @@ from Exchange import Exchange
 from YDown import YDown
 from Translator import Prekladac
 from Wiki import Wikipe
+from WriteSpeed import Rychlost
 
 class Router:
 
@@ -15,7 +16,8 @@ class Router:
             "/exchange": Exchange(page),
             "/Ydown": YDown(page),
             "/Translate": Prekladac(page),
-            "/Wiki": Wikipe(page)
+            "/Wiki": Wikipe(page),
+            "/Speed": Rychlost(page)
         }
         self.body = ft.Container(content=self.routes['/'])
 

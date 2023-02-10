@@ -22,7 +22,7 @@ def NavBar(page, ft=ft):
                               style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=2))),
             ft.ElevatedButton("Hodiny", icon=ft.icons.PUNCH_CLOCK_OUTLINED, on_click=None, width=180, #Pro náhled rozhraní
                               style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=2))),
-            ft.ElevatedButton("Rychlost psaní", icon=ft.icons.TEXT_FIELDS_ROUNDED, on_click=None, width=180, #Pro náhled rozhraní
+            ft.ElevatedButton("Rychlost psaní", icon=ft.icons.TEXT_FIELDS_ROUNDED, on_click=lambda _: page.go('/Speed'), width=180,
                               style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=2))),
         ]
     )
