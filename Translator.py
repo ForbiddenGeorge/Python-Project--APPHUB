@@ -34,7 +34,7 @@ def Prekladac(page, ft=ft):
         DruhyText.value = pomocna
         page.update()
 
-
+        #Alternativní verze
         # preklad = Translator(from_lang=From, to_lang=To)
         # vysledek =preklad.translate(Fromtext)
         # DruhyText.value = vysledek

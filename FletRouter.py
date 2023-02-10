@@ -1,10 +1,9 @@
-import flet as ft
-
 
 from one import One
 from Exchange import Exchange
 from YDown import YDown
 from Translator import Prekladac
+from Wiki import Wikipe
 
 class Router:
 
@@ -15,7 +14,8 @@ class Router:
             "/": One(page),
             "/exchange": Exchange(page),
             "/Ydown": YDown(page),
-            "/Translate": Prekladac(page)
+            "/Translate": Prekladac(page),
+            "/Wiki": Wikipe(page)
         }
         self.body = ft.Container(content=self.routes['/'])
 
