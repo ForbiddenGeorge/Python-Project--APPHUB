@@ -1,28 +1,34 @@
 import flet as ft
-from googletrans import Translator
-#from deep_translator import GoogleTranslator
 import translators as ts
-
-
+import translators.server as tss
+#from googletrans import Translator
+#from deep_translator import GoogleTranslator
 #from translate import Translator
 
 def Prekladac(page, ft=ft):
     def Prace(e):
         DruhyText.value = ""
         Fromtext = str(PrvniText.value)
+        print(ts.translators_pool)
         print(Fromtext)
         To = str(VolbaJazykaDruha.value)
         To = To[0:2]
         From = str(VolbaJazykaPrvni.value)
         if From == "automatická detekce jazyka":
-            DruhyText.value = str(ts.translate_text(query_text=str(Fromtext), translator='google',
-                                                    from_language='auto', to_language=To))
+            From = From[0:4]
         else:
             From = From[0:2]
-            DruhyText.value = str(ts.translate_text(query_text=str(Fromtext),translator='google',
-                          from_language=From,to_language=To))
-        # prekladac = Translator()
-        # DruhyText.value = prekladac.translate(text=Fromtext, dest=To, src=From)
+
+        DruhyText.value = str(ts.translate_text(query_text=str(Fromtext), translator='deepl', from_language=From, to_language=To))
+        # lze použít spoustu překladačů,
+        # třeba skvělej Deepl, či Yandex, každý překladač však umí jiný soubor jazyků,
+        # bylo by tedy potřeba vytvořit variace nabídek jazyků pro různé překladače,
+        # aby si mohl uživatel zvolit svůj oblíbený překladač
+        # https: // github.com / UlionTse / translators / blob / master / README.md
+        #['alibaba', 'argos', 'baidu', 'bing', 'caiyun', 'deepl', 'google', 'iciba', 'iflytek', 'itranslate',
+        # 'lingvanex', 'niutrans', 'mglip', 'papago', 'reverso', 'sogou', 'tencent', 'translateCom', 'utibet', 'yandex',
+        # 'youdao']
+
         page.update()
 
     def Prehod(e):
