@@ -4,11 +4,14 @@ import time
 import flet as ft
 
 def Rychlost(page, ft=ft):
+
+
     def Napis(e):
         f = open('vety.txt').read()
         sentences = f.split('\n')
         veta.value = random.choice(sentences)
         pole.value = ""
+        cas.value = 0
         page.update()
 
 
@@ -16,19 +19,20 @@ def Rychlost(page, ft=ft):
         veta.value = "Konec testu"
         page.update()
 
+
     def Cas(e):
+        pole.on_focus = True
+        hodnota = 0
         while pole.on_focus:
-            start = time.time()
-            end = time.time()
-            sec = start - end
-            mins = sec // 60
-            sec = sec % 60
-            hours = mins // 60
-            mins = mins % 60
-            cas.value = "{0}:{1}:{2}".format(int(hours),int(mins),sec)
-            print( cas.value)
-            time.sleep(1)
+            # cas.value = "{0}:{1}:{2}".format(int(hours),int(mins),sec)
+            hodnota = hodnota +1
+            time.sleep(0.01)
+            if hodnota == 100:
+                hodnota = 0
+
+            cas.value = hodnota
             page.update()
+        page.update()
 
 
     veta =ft.Text(selectable=False, value="", text_align=ft.TextAlign.CENTER, size=30, weight=ft.FontWeight.BOLD)
@@ -45,7 +49,7 @@ def Rychlost(page, ft=ft):
             ),
             ft.Row(
                 [
-                    ft.Text("Kliknutím na pole začne časovač počítat, stisknutím klávesy Enter pokus ukončíte", size=16)
+                    ft.Text("Kliknutím na textové pole začne časovač počítat, stisknutím klávesy Enter pokus ukončíte", size=16)
                 ],
                 alignment=ft.MainAxisAlignment.CENTER
             ),
@@ -63,7 +67,7 @@ def Rychlost(page, ft=ft):
             ),
             ft.Row(
                 [
-                    ft.ElevatedButton(text="Restartovat", on_click=Napis)
+                    ft.ElevatedButton(text="Nová věta", on_click=Napis)
                 ],
                 alignment=ft.MainAxisAlignment.CENTER
             ),
