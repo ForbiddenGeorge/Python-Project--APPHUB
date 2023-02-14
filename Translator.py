@@ -16,7 +16,7 @@ def Prekladac(page, ft=ft):
         else:
             From = From[0:2]
 
-        DruhyText.value = str(ts.translate_text(query_text=str(Fromtext), translator='deepl', from_language=From, to_language=To)) #Přeložení a následné vložení do pole
+        DruhyText.value = str(ts.translate_text(query_text=str(Fromtext), translator='google', from_language=From, to_language=To)) #Přeložení a následné vložení do pole
         '''lze použít spoustu překladačů,
          každý překladač však umí jiný soubor jazyků,
          bylo by tedy potřeba vytvořit variace nabídek jazyků pro různé překladače,
