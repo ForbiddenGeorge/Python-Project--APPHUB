@@ -1,25 +1,30 @@
 import flet as ft
 import translators as ts
-import translators.server as tss
-#from googletrans import Translator
-#from deep_translator import GoogleTranslator
-#from translate import Translator
+
 
 def Prekladac(page, ft=ft):
+    '''Tato funkce obsahuje celý překladač, tato funkce je volána podle svého unikátního identeifikátoru ve skriptu "FletRouter.py", používán je následně ve skriptu "app_bar.py"'''
     def Prace(e):
-        DruhyText.value = ""
-        Fromtext = str(PrvniText.value)
-        print(ts.translators_pool)
-        print(Fromtext)
+        '''Samotný překladač'''
+        DruhyText.value = "" #vymažu předešlý výsledek
+        Fromtext = str(PrvniText.value) #Načtu si text z prvního pole
         To = str(VolbaJazykaDruha.value)
-        To = To[0:2]
+        To = To[0:2] #překladač pracuje s jazyky jako dvoupísmennými značkami
         From = str(VolbaJazykaPrvni.value)
         if From == "automatická detekce jazyka":
             From = From[0:4]
         else:
             From = From[0:2]
 
-        DruhyText.value = str(ts.translate_text(query_text=str(Fromtext), translator='deepl', from_language=From, to_language=To))
+        DruhyText.value = str(ts.translate_text(query_text=str(Fromtext), translator='deepl', from_language=From, to_language=To)) #Přeložení a následné vložení do pole
+        '''lze použít spoustu překladačů,
+         každý překladač však umí jiný soubor jazyků,
+         bylo by tedy potřeba vytvořit variace nabídek jazyků pro různé překladače,
+         aby si mohl uživatel zvolit svůj oblíbený překladač
+         https: // github.com / UlionTse / translators / blob / master / README.md
+         ['alibaba', 'argos', 'baidu', 'bing', 'caiyun', 'deepl', 'google', 'iciba', 'iflytek', 'itranslate',
+         'lingvanex', 'niutrans', 'mglip', 'papago', 'reverso', 'sogou', 'tencent', 'translateCom', 'utibet', 'yandex',
+         'youdao'] '''
         # lze použít spoustu překladačů,
         # třeba skvělej Deepl, či Yandex, každý překladač však umí jiný soubor jazyků,
         # bylo by tedy potřeba vytvořit variace nabídek jazyků pro různé překladače,
@@ -32,6 +37,7 @@ def Prekladac(page, ft=ft):
         page.update()
 
     def Prehod(e):
+        ''' kliknutím na ikonku jazyků se přehodí honodty textových polí, tak i hondnoty rozevíracího seznamu'''
         pomocna = VolbaJazykaPrvni.value
         VolbaJazykaPrvni.value = VolbaJazykaDruha.value
         VolbaJazykaDruha.value = pomocna
@@ -40,13 +46,7 @@ def Prekladac(page, ft=ft):
         DruhyText.value = pomocna
         page.update()
 
-        #Alternativní verze
-        # preklad = Translator(from_lang=From, to_lang=To)
-        # vysledek =preklad.translate(Fromtext)
-        # DruhyText.value = vysledek
-        # page.update()
-
-    PrvniText = ft.TextField  (
+    PrvniText = ft.TextField  ( #První textové pole kam uživatel zadává text k přeložení
                         label="Text (max 300 znaků)",
                         width=500,
                         multiline=True,
@@ -56,7 +56,7 @@ def Prekladac(page, ft=ft):
                         bgcolor=ft.colors.BLUE_GREY_50,
                         border=ft.InputBorder.UNDERLINE,
                                 )
-    DruhyText = ft.TextField  (
+    DruhyText = ft.TextField  (  #Druhé textové pole kde se zobrazí přeložený text
                         label="Text (max 300 znaků)",
                         multiline=True,
                         width=500,
@@ -67,14 +67,14 @@ def Prekladac(page, ft=ft):
                         border=ft.InputBorder.UNDERLINE,
                         value=" "
                                 )
-    znak = ft.IconButton (
+    znak = ft.IconButton (  #Grafiká ikonka co po klinutí otočí hodnoty viz. funkce 'Prehod(e)'
             icon=ft.icons.TRANSLATE_OUTLINED,
             width=50,
             on_click=Prehod,
             tooltip="Přehoďit"
 
                         )
-    VolbaJazykaPrvni = ft.Dropdown(
+    VolbaJazykaPrvni = ft.Dropdown(  #Prvni seznam jazyků, narozdíl od druhého má možnost 'automatická detekce jazyka'
                     width=300,
                     label="Jazyk",
                     options=[
@@ -100,7 +100,7 @@ def Prekladac(page, ft=ft):
 
                     ]
                 )
-    VolbaJazykaDruha = ft.Dropdown(
+    VolbaJazykaDruha = ft.Dropdown( #Druhy seznam jazyků
         width=300,
         label="Jazyk",
         options=[
@@ -127,9 +127,9 @@ def Prekladac(page, ft=ft):
 
 
 
-    context = ft.Column(
+    context = ft.Column( #Grafický obsah stránky, několik řádků obsahující jednotlivé prvky, celé v jednom sloupci
         [
-            # ft.Row( MARGIN OD APPBARU
+            # ft.Row(  Možné zavedení marginu od app baru
             #     [
             #         ft.TextField(
             #         width=1050,
