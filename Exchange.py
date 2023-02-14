@@ -3,22 +3,23 @@ import requests
 
 
 def Exchange(page, ft=ft):
+    '''Skript pro směňování peněz'''
     def klikl(e):
 
-        ZToho = str(PrvniMena.value)
+        ZToho = str(PrvniMena.value)    # Načtení vustpní měny
         ZToho = ZToho[0:3]
-        DoToho = str(DruhaMena.value)
+        DoToho = str(DruhaMena.value) # Načtení výustpní měny
         DoToho = DoToho[0:3]
         response = requests.get(
-            f"https://api.frankfurter.app/latest?amount={prvni.value}&from={ZToho}&to={DoToho}")
+            f"https://api.frankfurter.app/latest?amount={prvni.value}&from={ZToho}&to={DoToho}") #Konverze měny pomocí api
 
-        druha.value = response.json()['rates'][DoToho]
+        druha.value = response.json()['rates'][DoToho] # Načtení do druhého textového pole
         page.update()
 
-    prvni = ft.TextField(label="Hodnota",on_submit=klikl)
+    prvni = ft.TextField(label="Hodnota",on_submit=klikl) # Zadaná hodnota
 
-    druha = ft.TextField(label="Hodnota", icon=ft.icons.ARROW_RIGHT, on_submit=None)
-    PrvniMena = ft.Dropdown(
+    druha = ft.TextField(label="Hodnota", icon=ft.icons.ARROW_RIGHT, on_submit=None) # Výsledná hodnota
+    PrvniMena = ft.Dropdown( # první volba měn
         width=300,
         label="Měna",
         options=[
@@ -39,7 +40,7 @@ def Exchange(page, ft=ft):
             ft.dropdown.Option("DKK (Dánská koruna)")
         ]
     )
-    DruhaMena = ft.Dropdown(
+    DruhaMena = ft.Dropdown( # první volba měn
         width=300,
         label="Měna",
         icon = ft.icons.CURRENCY_EXCHANGE,
@@ -61,7 +62,6 @@ def Exchange(page, ft=ft):
             ft.dropdown.Option("DKK (Dánská koruna)")
         ]
     )
-    ups = ft.Text("koko")
     contenty = ft.Column(
         [
                ft.Row(
