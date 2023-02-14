@@ -5,13 +5,13 @@ from YDown import YDown
 from Translator import Prekladac
 from Wiki import Wikipe
 from WriteSpeed import Rychlost
-
+#importování hlavních funkcí jednotlivých skriptů
 class Router:
 
     def __init__(self, page, ft):  #Volání příslušných funkcí(stránek) podle identifikátoeu
         self.page = page
         self.ft = ft
-        self.routes = {
+        self.routes = { #unikátní identifikátor pro každou aplikaci
             "/": One(page),
             "/exchange": Exchange(page),
             "/Ydown": YDown(page),

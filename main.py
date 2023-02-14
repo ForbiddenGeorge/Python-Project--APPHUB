@@ -4,6 +4,7 @@ from app_bar import NavBar
 from FletRouter import Router
 
 def main(page: ft.Page):
+    '''Hlavní skript, obsahuje řídící skripty, udává vlastnosti okna a úvodní obrazovku'''
     page.appbar = NavBar(page, ft)
     myRouter = Router(page, ft)
 
