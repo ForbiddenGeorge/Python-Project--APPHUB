@@ -28,7 +28,7 @@ def Rychlost(page, ft=ft):
             except:
                 pass
         presnost = pocet / len(veta.value) * 100
-
+        presnost = round(presnost, 2)
 
         spravnost.value = "Správnost: {0}".format(presnost) + "%"
         page.update()
