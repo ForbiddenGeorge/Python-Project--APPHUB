@@ -14,6 +14,12 @@ def YDown(page, ft=ft):
         elif Volba.value == "mp4":
             StahniCtyri(VstupniLink.value)
     page.update()
+    def OznameniNacitani(e):
+        '''Oznámení na spodu obrazovky(nepotřebné pro funkční chod programu)'''
+        zprava = ft.SnackBar(ft.Text("Načítání videa", color=ft.colors.BLUE_900), bgcolor=ft.colors.BLUE_50)
+        page.add(zprava)
+        zprava.open = True
+        page.update()
 
     def OznameniZacatek(e):
         '''Oznámení na spodu obrazovky(nepotřebné pro funkční chod programu)'''
@@ -76,6 +82,7 @@ def YDown(page, ft=ft):
     def StahniCtyri(link):
         '''Funkce pro stáhnutí mp4 souboru'''
         streem = YouTube(link)
+        OznameniNacitani(e=0)  # Oznameni
         streem = streem.streams.get_highest_resolution()  #Načtení videa
         try:
             Jmeno.value = str("Název videa\n\n" + str(streem.title)) #Načtení informací na obrrazovku
@@ -89,6 +96,7 @@ def YDown(page, ft=ft):
     def StahniTri(link):
         '''Funkce pro stáhnutí mp3 souboru'''
         streem = YouTube(link)
+        OznameniNacitani(e=0)  # Oznameni
         streem = streem.streams.get_highest_resolution() #Načtení videa
         Jmeno.value = str("Název videa\n\n" + streem.title) #Načtení informací na obrrazovku
         Rozliseni.value = str("Formát\n\n.MP3") #Načtení informací na obrrazovku
