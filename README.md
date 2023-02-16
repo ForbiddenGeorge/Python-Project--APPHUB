@@ -12,24 +12,25 @@ GUI aplikace, která v sobě schraňuje několik menších, na sobě nezávislý
  Návrhy ua zlepšení:
  
  1. Směnárna:
-  
+  Rozšírení volby měn(velice jednoduché)
   
   
  2. Stahovač a konverter Youtube videí:
-  
+  Rozšíření volby konvertoru(.wav, .avi, .mkv) 
   
   
   
  3. Překladač:
-  
+  Rozšíření volby jazyků
+  Přidání volby výběru překladače(Google, Deepl, Yandex)
   
   
  4. Wikipedie články:
-  
+   Zobrazení korektního 1. odstavce bez vedlejšího textu
   
   
  5. Test na rychlost a přesnost psaní:
-  
+   Spravení kontroly správnosti textu(pokus se udělá chyba na začátku, zbytek věty se pak bere jako chybný)
   
   
   
