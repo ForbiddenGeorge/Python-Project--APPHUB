@@ -4,7 +4,7 @@ import keyboard
 
 import flet as ft
 
-
+#IMPORTOVANÁ APLIKACE Z GITHUBU
 
 def Rychlost(page, ft=ft):
     '''Hlavní flunkce volaná řídícím skriptem
