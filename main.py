@@ -14,10 +14,8 @@ def main(page: ft.Page):
     page.on_route_change = myRouter.route_change
     page.window_maximizable = False
     page.add(
-        myRouter.body
+       myRouter.body
     )
-
-    page.go('/')
 
 ft.app(target=main)
 
